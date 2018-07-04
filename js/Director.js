@@ -6,6 +6,7 @@ import {BottomPencil} from './runtime/BottomPencil.js';
 export class Director {
 	constructor() {
 		this.dataStore = DataStore.getInstance();
+		this.gameOver = false;
 	}
 	//单例模式，只允许一个导演存在
 	static getInstance() {
@@ -24,22 +25,29 @@ export class Director {
 	}
 
 	run() {
-		this.dataStore.get('bg').draw();
-		const pencils = this.dataStore.get('pencils');
-		if(pencils.length === 4 && (pencils[0].x+pencils[0].w) < 0) {
-			pencils.shift();
-			pencils.shift();
+		if (!this.gameOver) {
+			this.dataStore.get('bg').draw();
+			
+			const pencils = this.dataStore.get('pencils');
+			if(pencils.length === 4 && (pencils[0].x + pencils[0].w) < 0) {
+				pencils.shift();
+				pencils.shift();
+			}
+			if(pencils.length === 2 && pencils[0].x < window.innerWidth / 2 - pencils[0].w) {
+				this.createPencil();
+			}
+			this.dataStore.get('pencils').forEach((value) => {
+				value.draw();
+			})
+
+			this.dataStore.get('land').draw();
+			
+			let timer = requestAnimationFrame(()=>{this.run()});
+			this.dataStore.put('timer',timer);
+		}else{
+			console.log('game over!');
+			cancelAnimationFrame(this.dataStore.get('timer'));
+			this.dataStore.destory();
 		}
-		if(pencils.length === 2 && pencils[0].x < window.innerWidth/2-pencils[0].w) {
-			this.createPencil();
-		}
-		this.dataStore.get('pencils').forEach(function(value) {
-			value.draw();
-		})
-		this.dataStore.get('land').draw();
-		
-		let timer = requestAnimationFrame(()=>{this.run()});
-		this.dataStore.put('timer',timer);
-		// cancelAnimationFrame(this.dataStore.get('timer'));
 	}
 }
