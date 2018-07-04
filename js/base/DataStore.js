@@ -8,12 +8,20 @@ export class DataStore {
 	}
 
 	constructor() {
+		// 不变的资源
+		// 画笔
+		this.ctx = {};
+		// 图片资源对象
+		this.res = {};
+
+		// 变化的资源
+		//精灵资源对象
 		this.map = new Map();
 	}
 
 	put(key, value) {
 		if (typeof value === 'function') {
-			value = new value;
+			value = new value;//自动创建精灵对象
 		}
 		this.map.set(key, value);
 		return this;
