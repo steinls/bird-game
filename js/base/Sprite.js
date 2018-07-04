@@ -11,7 +11,6 @@ export class Sprite {
 		this.ctx = this.dataStore.ctx;
 		this.img = img;
 		this.srcX = srcX;
-		console.log(this.srcX)
 		this.srcY = srcY;
 		this.srcW = srcW;
 		this.srcH = srcH;
@@ -19,6 +18,10 @@ export class Sprite {
 		this.y = y;
 		this.w = w;
 		this.h = h;
+	}
+
+	static getImage(key) {
+		return DataStore.getInstance().res.get(key);
 	}
 
 	/**

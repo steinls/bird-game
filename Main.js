@@ -21,8 +21,7 @@ export class Main {
 
 	init() {
 		this.dataStore
-			.put('bg',
-				new BackGround(this.ctx,this.dataStore.res.get('background')));
+			.put('bg',BackGround);
 		Director.getInstance().run();
 	}
 }
