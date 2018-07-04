@@ -3,6 +3,7 @@ import {Director} from './js/Director.js';
 import {BackGround} from './js/runtime/BackGround.js';
 import {DataStore} from './js/base/DataStore.js';
 import {Land} from './js/runtime/Land.js';
+import {Birds} from './js/player/Birds.js';
 
 // 初始化游戏，游戏入口
 export class Main {
@@ -27,7 +28,8 @@ export class Main {
 		this.dataStore
 			.put('pencils',[])
 			.put('bg',BackGround)
-			.put('land',Land);
+			.put('land',Land)
+			.put('birds',Birds);
 		this.director.createPencil();
 		this.director.run();
 	}
