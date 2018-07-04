@@ -17,6 +17,7 @@ export class Main {
 	onResourceLoaderFirstLoaded(map) {
 		this.dataStore.ctx = this.ctx;
 		this.dataStore.res = map;
+		this.dataStore.speed = 2;
 		this.init();
 	}
 
