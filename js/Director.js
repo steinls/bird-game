@@ -25,11 +25,19 @@ export class Director {
 
 	run() {
 		this.dataStore.get('bg').draw();
-		this.dataStore.get('land').draw();
+		const pencils = this.dataStore.get('pencils');
+		if(pencils.length === 4 && (pencils[0].x+pencils[0].w) < 0) {
+			pencils.shift();
+			pencils.shift();
+		}
+		if(pencils.length === 2 && pencils[0].x < window.innerWidth/2-pencils[0].w) {
+			this.createPencil();
+		}
 		this.dataStore.get('pencils').forEach(function(value) {
 			value.draw();
 		})
-
+		this.dataStore.get('land').draw();
+		
 		let timer = requestAnimationFrame(()=>{this.run()});
 		this.dataStore.put('timer',timer);
 		// cancelAnimationFrame(this.dataStore.get('timer'));
