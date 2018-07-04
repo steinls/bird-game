@@ -1,12 +1,14 @@
+import {DataStore} from './DataStore.js';
+
 // 精灵的基类，包含精灵的基本功能
 export class Sprite {
 	constructor({
-		ctx=null,
 		img=null,
 		srcX=0,srcY=0,srcW=0,srcH=0,
 		x=0,y=0,h=0,w=0
 	}={}) {
-		this.ctx = ctx;
+		this.dataStore = DataStore.getInstance();
+		this.ctx = this.dataStore.ctx;
 		this.img = img;
 		this.srcX = srcX;
 		console.log(this.srcX)
@@ -30,11 +32,15 @@ export class Sprite {
      * width 要使用的宽度
      * height 要使用的高度
      */
-	draw() {
+	draw({
+		img=this.img,
+		srcX=this.srcX,srcY=this.srcY,srcW=this.srcW,srcH=this.srcH,
+		x=this.x,y=this.y,w=this.w,h=this.h
+	}={}) {
 		this.ctx.drawImage(
-			this.img,
-			this.srcX,this.srcY,this.srcW,this.srcH,
-			this.x,this.y,this.w,this.h
+			img,
+			srcX,srcY,srcW,srcH,
+			x,y,w,h
 		);
 	}
 }
