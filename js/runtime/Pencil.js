@@ -13,10 +13,10 @@ export class Pencil extends Sprite {
 
 	draw() {
 		this.x -= DataStore.getInstance().speed;
-		this.ctx.draw({
-			img,
-			srcW:this.srcW,srcH:this.srcH,
-			x:this.x,y:this.y,w:this.w,h:this.h
-		});
+		this.ctx.drawImage(
+			this.img,
+			this.srcX,this.srcY,this.srcW,this.srcH,
+			this.x,this.y,this.w,this.h
+		);
 	}
 }

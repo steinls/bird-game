@@ -10,6 +10,7 @@ export class Main {
 		this.canvas = document.querySelector('canvas');
 		this.ctx = this.canvas.getContext('2d');
 		this.dataStore = DataStore.getInstance();
+		this.director = Director.getInstance();
 		const loader = ResourceLoader.create();
 		loader.onLoaded(map => this.onResourceLoaderFirstLoaded(map))
 	}
@@ -23,8 +24,10 @@ export class Main {
 
 	init() {
 		this.dataStore
+			.put('pencils',[])
 			.put('bg',BackGround)
 			.put('land',Land);
-		Director.getInstance().run();
+		this.director.createPencil();
+		this.director.run();
 	}
 }

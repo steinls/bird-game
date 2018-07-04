@@ -9,7 +9,7 @@ export class BottomPencil extends Pencil {
 
 	draw() {
 		let gap = window.innerHeight/5;
-		this.y = this.top + this.gap;
-		super().draw();
+		this.y = this.top + gap;
+		super.draw();
 	}
 }

@@ -10,6 +10,6 @@ export class TopPencil extends Pencil{
 
 	draw() {
 		this.y = this.top - this.h;
-		super().draw();
+		super.draw();
 	}
 }
