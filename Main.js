@@ -9,15 +9,20 @@ export class Main {
 		this.canvas = document.querySelector('canvas');
 		this.ctx = this.canvas.getContext('2d');
 		this.dataStore = DataStore.getInstance();
-		console.log(this.dataStore)
 		const loader = ResourceLoader.create();
 		loader.onLoaded(map => this.onResourceLoaderFirstLoaded(map))
 	}
+
 	onResourceLoaderFirstLoaded(map) {
 		this.dataStore.ctx = this.ctx;
-		this.dataStore.map = map;
-		// console.log(map)
-		let bg = new BackGround(this.ctx,map.get('background'));
-		bg.draw();
+		this.dataStore.res = map;
+		this.init();
+	}
+
+	init() {
+		this.dataStore
+			.put('bg',
+				new BackGround(this.ctx,this.dataStore.res.get('background')));
+		Director.getInstance().run();
 	}
 }

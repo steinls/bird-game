@@ -1,27 +1,26 @@
 // 变量缓存器
 export class DataStore {
 	static getInstance() {
-		if(!DataStore.instance){
+		if (!DataStore.instance) {
 			DataStore.instance = new DataStore();
 		}
 		return DataStore.instance;
 	}
 
-	constructor(){
+	constructor() {
 		this.map = new Map();
 	}
 
-	put(key,value){
-		this.map.set(key,value);
-		console.log(111)
+	put(key, value) {
+		this.map.set(key, value);
 		return this;
 	}
 
-	get(key){
+	get(key) {
 		return this.map.get(key);
 	}
 
-	destory(){
+	destory() {
 		for (let value of this.map.values()) {
 			value = null;
 		}
