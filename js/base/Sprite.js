@@ -20,6 +20,29 @@ export class Sprite {
 		this.h = h;
 	}
 
+	// 体积（边界）
+	setVolume() {
+		this.volume = {
+			left:this.x,
+			right:this.x+this.w,
+			top:this.y,
+			bottom:this.y+this.h
+		};
+	};
+
+	// 检测碰撞
+	isStrike(steelX) {
+		let s = false;
+		if(this.volume.top < steelX.volume.bottom &&
+            this.volume.bottom > steelX.volume.top &&
+            this.volume.right > steelX.volume.left &&
+            this.volume.left < steelX.volume.right
+        ) {
+			s = true;
+		}
+		return s;
+	};
+
 	static getImage(key) {
 		return DataStore.getInstance().res.get(key);
 	}

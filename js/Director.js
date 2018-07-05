@@ -56,14 +56,23 @@ export class Director {
 	check() {
 		const birds = this.dataStore.get('birds');
 		const land = this.dataStore.get('land');
+		const pencils = this.dataStore.get('pencils');
 
 		if((birds.y+birds.h) > land.y){
 			this.gameOver = true;
 		}
 		
-	}
-
-	static isStrike(birds,pencil) {
-
+		let isStrike = false;
+		pencils.forEach((pencil) => {
+			if(birds.isStrike(pencil)){
+				isStrike = true;
+				return;
+			};
+		});
+		if(isStrike){
+			console.log('撞到水管啦');
+            this.gameOver = true;
+            return;
+		}
 	}
 }

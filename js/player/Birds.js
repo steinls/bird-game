@@ -9,7 +9,7 @@ export class Birds extends Sprite {
 			srcW:img.width,srcH:img.height,
 			x:window.innerWidth/4,y:window.innerHeight/2,w:32,h:24
 		});
-		
+
 		// es2018对象的可以用...展开的，这里就先规划好吧
 		this.clips = [
 			{
@@ -35,9 +35,12 @@ export class Birds extends Sprite {
 		this.birdsSpeed = 0.2;
 		this.status = 0;
 		this.time = 0;
+		this.setVolume();
 	}
 
 	draw() {
+		this.setVolume();
+
 		// 小鸟挥动翅膀
 		this.count = (this.count+this.birdsSpeed)%3;
 		this.status = Math.floor(this.count);
