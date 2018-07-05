@@ -38,15 +38,26 @@ export class Birds extends Sprite {
 			}
 		];
 		this.count = 0;
-		this.birdsSpeed = 0.3;
+		this.birdsSpeed = 0.2;
 		this.status = 0;
+		this.time = 0;
 	}
 
 	draw() {
+		// 小鸟挥动翅膀
 		this.count = (this.count+this.birdsSpeed)%3;
 		this.status = Math.floor(this.count);
+
+		//小鸟重力加速度模拟
+		const g = 0.098/2.5;
+		const offsetY = 30;
+		this.position.y += (g * this.time *(this.time - offsetY))/2;
+		this.time++;
+
+
 		let config = Object.assign({img:this.img},this.clips[this.status],this.position);
 		// console.log(config)
+		// 
 		super.draw(config);
 	}
 }
