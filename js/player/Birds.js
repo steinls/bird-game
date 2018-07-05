@@ -9,7 +9,7 @@ export class Birds extends Sprite {
 			srcW:img.width,srcH:img.height,
 			x:window.innerWidth/4,y:window.innerHeight/2,w:32,h:24
 		});
-
+		
 		// es2018对象的可以用...展开的，这里就先规划好吧
 		this.clips = [
 			{
@@ -41,6 +41,9 @@ export class Birds extends Sprite {
 		// 小鸟挥动翅膀
 		this.count = (this.count+this.birdsSpeed)%3;
 		this.status = Math.floor(this.count);
+		for(let key in this.clips[this.status]){
+			this[key] = this.clips[this.status][key];
+		}
 
 		//小鸟重力加速度模拟
 		const g = 0.098/6;
@@ -48,16 +51,8 @@ export class Birds extends Sprite {
 		this.y += (g * this.time *(this.time - offsetY))/2;
 		this.time++;
 
-
-		let config = Object.assign(
-			{
-				img:this.img,
-				x:this.x,y:this.y,w:this.w,h:this.h
-			},
-			this.clips[this.status]
-		);
 		// console.log(config)
-		super.draw(config);
+		super.draw();
 	}
 
 	// 小鸟飞一下

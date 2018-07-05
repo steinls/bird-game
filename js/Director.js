@@ -56,8 +56,14 @@ export class Director {
 	check() {
 		const birds = this.dataStore.get('birds');
 		const land = this.dataStore.get('land');
+
 		if((birds.y+birds.h) > land.y){
 			this.gameOver = true;
 		}
+		
+	}
+
+	static isStrike(birds,pencil) {
+
 	}
 }
