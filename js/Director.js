@@ -56,7 +56,7 @@ export class Director {
 	check() {
 		const birds = this.dataStore.get('birds');
 		const land = this.dataStore.get('land');
-		if((birds.position.y+birds.h) > land.y){
+		if((birds.y+birds.h) > land.y){
 			this.gameOver = true;
 		}
 	}

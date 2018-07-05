@@ -7,16 +7,10 @@ export class Birds extends Sprite {
 		super({
 			img,
 			srcW:img.width,srcH:img.height,
-			w:img.width,h:img.height
+			x:window.innerWidth/4,y:window.innerHeight/2,w:32,h:24
 		});
 
 		// es2018对象的可以用...展开的，这里就先规划好吧
-		this.position = {
-			x:window.innerWidth/4,
-			y:window.innerHeight/2,
-			w:32,
-			h:24
-		};
 		this.clips = [
 			{
 				srcX:8,
@@ -49,13 +43,19 @@ export class Birds extends Sprite {
 		this.status = Math.floor(this.count);
 
 		//小鸟重力加速度模拟
-		const g = 0.098/2.5;
-		const offsetY = 30;
-		this.position.y += (g * this.time *(this.time - offsetY))/2;
+		const g = 0.098/6;
+		const offsetY = 38;
+		this.y += (g * this.time *(this.time - offsetY))/2;
 		this.time++;
 
 
-		let config = Object.assign({img:this.img},this.clips[this.status],this.position);
+		let config = Object.assign(
+			{
+				img:this.img,
+				x:this.x,y:this.y,w:this.w,h:this.h
+			},
+			this.clips[this.status]
+		);
 		// console.log(config)
 		super.draw(config);
 	}
