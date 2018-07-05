@@ -25,6 +25,7 @@ export class Director {
 	}
 
 	run() {
+		this.check();
 		if (!this.gameOver) {
 			this.dataStore.get('bg').draw();
 			
@@ -49,6 +50,14 @@ export class Director {
 			console.log('game over!');
 			cancelAnimationFrame(this.dataStore.get('timer'));
 			this.dataStore.destory();
+		}
+	}
+
+	check() {
+		const birds = this.dataStore.get('birds');
+		const land = this.dataStore.get('land');
+		if((birds.position.y+birds.h) > land.y){
+			this.gameOver = true;
 		}
 	}
 }

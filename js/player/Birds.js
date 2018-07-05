@@ -57,7 +57,11 @@ export class Birds extends Sprite {
 
 		let config = Object.assign({img:this.img},this.clips[this.status],this.position);
 		// console.log(config)
-		// 
 		super.draw(config);
+	}
+
+	// 小鸟飞一下
+	flyOne() {
+		this.time = 0;
 	}
 }
