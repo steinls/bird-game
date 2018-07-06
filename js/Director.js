@@ -26,7 +26,6 @@ export class Director {
 
 	run() {
 		this.check();
-		if (!this.gameOver) {
 			this.dataStore.get('bg').draw();
 			
 			const pencils = this.dataStore.get('pencils');
@@ -46,10 +45,11 @@ export class Director {
 			this.dataStore.get('scorePanel').draw();
 			this.dataStore.get('birds').draw();
 
+		if (!this.gameOver) {
 			let timer = requestAnimationFrame(()=>{this.run()});
 			this.dataStore.put('timer',timer);
+		
 		}else{
-			this.dataStore.get('bg').draw();
 			this.dataStore.get('startBtn').draw();
 			cancelAnimationFrame(this.dataStore.get('timer'));
 			this.dataStore.destory();
