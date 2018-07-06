@@ -1,5 +1,5 @@
 import {Sprite} from '../base/Sprite.js'
-
+import {DataStore} from '../base/DataStore.js'
 
 export class Birds extends Sprite {
 	constructor() {
@@ -7,7 +7,7 @@ export class Birds extends Sprite {
 		super({
 			img,
 			srcW:img.width,srcH:img.height,
-			x:window.innerWidth/4,y:window.innerHeight/2,w:32,h:24
+			x:DataStore.getInstance().canvas.width/4,y:DataStore.getInstance().canvas.height/2,w:32,h:24
 		});
 
 		// es2018对象的可以用...展开的，这里就先规划好吧

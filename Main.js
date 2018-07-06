@@ -19,6 +19,7 @@ export class Main {
 	}
 
 	onResourceLoaderFirstLoaded(map) {
+		this.dataStore.canvas = this.canvas;
 		this.dataStore.ctx = this.ctx;
 		this.dataStore.res = map;
 		this.dataStore.speed = 2;
@@ -40,8 +41,8 @@ export class Main {
 	}
 
 	registerEven() {
-		this.canvas.addEventListener('touchstart', e => {
-			e.preventDefault();
+		wx.onTouchStart(e => {
+			// e.preventDefault();
 			if(!this.director.gameOver){
 				this.dataStore.get('birds').flyOne();
 			}else{

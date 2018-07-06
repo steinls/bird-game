@@ -17,8 +17,8 @@ export class Director {
 	}
 
 	createPencil() {
-		const minTop = window.innerHeight/8;
-		const maxTop = window.innerHeight/2;
+		const minTop = DataStore.getInstance().canvas.height/8;
+		const maxTop = DataStore.getInstance().canvas.height/2;
 		const top = minTop + Math.random() * (maxTop - minTop);
 		this.dataStore.get('pencils').push(new TopPencil(top));
 		this.dataStore.get('pencils').push(new BottomPencil(top));
@@ -35,7 +35,7 @@ export class Director {
 				pencils.shift();
 				this.dataStore.get('scorePanel').lock = true;
 			}
-			if(pencils.length === 2 && pencils[0].x < window.innerWidth / 2 - pencils[0].w) {
+			if(pencils.length === 2 && pencils[0].x < DataStore.getInstance().canvas.width / 2 - pencils[0].w) {
 				this.createPencil();
 			}
 			this.dataStore.get('pencils').forEach((value) => {
@@ -49,6 +49,7 @@ export class Director {
 			let timer = requestAnimationFrame(()=>{this.run()});
 			this.dataStore.put('timer',timer);
 		}else{
+			this.dataStore.get('bg').draw();
 			this.dataStore.get('startBtn').draw();
 			cancelAnimationFrame(this.dataStore.get('timer'));
 			this.dataStore.destory();

@@ -1,4 +1,5 @@
 import {Sprite} from '../base/Sprite.js';
+import {DataStore} from '../base/DataStore.js'
 
 // 移动的陆地类
 export class Land extends Sprite {
@@ -9,7 +10,7 @@ export class Land extends Sprite {
 			srcW:img.width,
 			srcH:img.height,
 			x:0,
-			y:(window.innerHeight-img.height),
+			y:(DataStore.getInstance().canvas.height-img.height),
 			w:img.width,
 			h:img.height
 		});
@@ -19,7 +20,7 @@ export class Land extends Sprite {
 
 	draw() {
 		this.landx -= this.speed;
-		if (this.landx<(window.innerWidth-this.img.width)) {
+		if (this.landx<(DataStore.getInstance().canvas.width-this.img.width)) {
 			this.landx = 0;
 		}
 		this.ctx.drawImage(
