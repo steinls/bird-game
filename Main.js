@@ -10,7 +10,7 @@ import {ScorePanel} from './js/player/ScorePanel.js'
 // 初始化游戏，游戏入口
 export class Main {
 	constructor() {
-		this.canvas = document.querySelector('canvas');
+		this.canvas = wx.createCanvas();
 		this.ctx = this.canvas.getContext('2d');
 		this.dataStore = DataStore.getInstance();
 		this.director = Director.getInstance();

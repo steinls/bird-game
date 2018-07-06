@@ -9,13 +9,14 @@ export class Pencil extends Sprite {
 			x:window.innerWidth,y:0,w:img.width,h:img.height
 		});
 		this.top = top;
+		this.speed = 2;
 		this.setVolume();
 	}
 
 	draw() {
 		this.setVolume();
 		
-		this.x -= DataStore.getInstance().speed;
+		this.x -= this.speed;
 		this.ctx.drawImage(
 			this.img,
 			this.srcX,this.srcY,this.srcW,this.srcH,
