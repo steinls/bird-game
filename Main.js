@@ -4,6 +4,8 @@ import {BackGround} from './js/runtime/BackGround.js';
 import {DataStore} from './js/base/DataStore.js';
 import {Land} from './js/runtime/Land.js';
 import {Birds} from './js/player/Birds.js';
+import {StartBtn} from './js/player/StartBtn.js'
+import {ScorePanel} from './js/player/ScorePanel.js'
 
 // 初始化游戏，游戏入口
 export class Main {
@@ -24,12 +26,14 @@ export class Main {
 	}
 
 	init() {
-		// this.director.gameOver = true;
+		this.director.gameOver = false;
 		this.dataStore
 			.put('pencils',[])
 			.put('bg',BackGround)
 			.put('land',Land)
-			.put('birds',Birds);
+			.put('birds',Birds)
+			.put('scorePanel',ScorePanel)
+			.put('startBtn',StartBtn);
 		this.director.createPencil();
 		this.registerEven();
 		this.director.run();
@@ -42,6 +46,7 @@ export class Main {
 				this.dataStore.get('birds').flyOne();
 			}else{
 				console.log('game over');
+				this.init();
 			}
 		});
 	}
