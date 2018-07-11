@@ -1,4 +1,4 @@
-## quickstart
+## bird-game
 
 ## 源码目录介绍
 ```
