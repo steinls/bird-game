@@ -6,8 +6,8 @@
 ├── base                                   // 基础类
 │   ├── DataStore.js                       // 变量缓存器
 │   ├── ResourceLoader.js                  // 资源预加载器
-│   ├── Resources.js 					   // 资源数组
-│	└── Sprite.js                          // 游戏精灵基类
+│   ├── Resources.js                       // 资源数组
+│   └── Sprite.js                          // 游戏精灵基类
 ├── player
 │   ├── Birds.js                           // 鸟类
 │   ├── ScorePanel.js                      // 计分板类
